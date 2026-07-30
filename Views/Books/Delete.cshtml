@@ -1,0 +1,48 @@
+@model Book
+
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<div class="card border-danger" style="max-width: 600px;">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Confirm Delete</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-danger">
+            <strong>Are you sure you want to delete this book?</strong><br />
+            Once deleted, this action cannot be undone.
+        </div>
+
+        <dl class="row">
+            <dt class="col-sm-3">Title:</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Author:</dt>
+            <dd class="col-sm-9">@Model.Author</dd>
+
+            <dt class="col-sm-3">ISBN:</dt>
+            <dd class="col-sm-9">@Model.ISBN</dd>
+
+            <dt class="col-sm-3">Published Date:</dt>
+            <dd class="col-sm-9">@Model.PublishedDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-3">Availability:</dt>
+            <dd class="col-sm-9">
+                @if (Model.IsAvailable)
+                {
+                    <span class="badge bg-success">Available</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Borrowed</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" asp-route-id="@Model.BookId" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

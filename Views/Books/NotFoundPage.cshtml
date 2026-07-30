@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = "Resource Not Found";
+    var bookId = ViewData["BookId"];
+}
+
+<div class="text-center" style="margin-top: 60px;">
+    <h1 class="text-danger" style="font-weight: 300;">Resource Not Found</h1>
+    <p class="text-muted">No book found with ID @bookId.</p>
+    <a asp-controller="Books" asp-action="Index" class="btn btn-primary">Back to Book List</a>
+</div>

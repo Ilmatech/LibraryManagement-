@@ -1,0 +1,47 @@
+@model BookFormViewModel
+
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="card" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Add New Book</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" placeholder="Enter book title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Author" class="form-label"></label>
+                <input asp-for="Author" class="form-control" placeholder="Enter author's name" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ISBN" class="form-label"></label>
+                <input asp-for="ISBN" class="form-control" placeholder="e.g., 978-1234567890" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PublishedDate" class="form-label"></label>
+                <input asp-for="PublishedDate" class="form-control" />
+                <span asp-validation-for="PublishedDate" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Book</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,37 @@
+@model BorrowRecord
+
+@{
+    ViewData["Title"] = "Borrow Book";
+}
+
+<div class="card" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Borrow: @Model.Book?.Title</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="Borrow" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="BookId" />
+
+            <div class="mb-3">
+                <label asp-for="BorrowerName" class="form-label"></label>
+                <input asp-for="BorrowerName" class="form-control" placeholder="Enter borrower's name" />
+                <span asp-validation-for="BorrowerName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="BorrowDate" class="form-label"></label>
+                <input asp-for="BorrowDate" class="form-control" />
+                <span asp-validation-for="BorrowDate" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Confirm Borrow</button>
+            <a asp-controller="Books" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

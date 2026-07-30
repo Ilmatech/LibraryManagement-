@@ -1,0 +1,52 @@
+@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Books List";
+}
+
+<h1>Books List</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+            <th>Availability</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.ISBN</td>
+                <td>@book.PublishedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @if (book.IsAvailable)
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Borrowed</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@book.BookId">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+                    @if (book.IsAvailable)
+                    {
+                        <a class="btn btn-primary btn-sm" asp-controller="Borrow" asp-action="Create" asp-route-bookId="@book.BookId">Borrow</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Book</a>

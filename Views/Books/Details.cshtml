@@ -1,0 +1,39 @@
+@model Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="card" style="max-width: 700px;">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">@Model.Title</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Author:</dt>
+            <dd class="col-sm-9">@Model.Author</dd>
+
+            <dt class="col-sm-3">ISBN:</dt>
+            <dd class="col-sm-9">@Model.ISBN</dd>
+
+            <dt class="col-sm-3">Published Date:</dt>
+            <dd class="col-sm-9">@Model.PublishedDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-3">Availability:</dt>
+            <dd class="col-sm-9">
+                @if (Model.IsAvailable)
+                {
+                    <span class="badge bg-success">Available</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Borrowed</span>
+                }
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
