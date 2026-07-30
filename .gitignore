@@ -1,0 +1,21 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# NuGet
+*.nupkg
+packages/
+
+# ASP.NET / local files
+appsettings.Development.json
+
+# OS
+.DS_Store
+Thumbs.db
